@@ -1,123 +1,108 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KStudio | Music Platform</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-<script src="https://kit.fontawesome.com/6d2ea823d0.js" crossorigin="anonymous"></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="KSTUDIO — music discovery, playlists, albums and artists.">
+  <title>KSTUDIO — Music for every moment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="bg"></div>
-
-<header>
-
-<nav>
-
-<div class="logo">
-<span>K</span>Studio
-</div>
-
-<ul>
-<li><a href="#">Home</a></li>
-<li><a href="#">Artists</a></li>
-<li><a href="#">Playlist</a></li>
-<li><a href="#">About</a></li>
-</ul>
-
-<a class="btn-nav">Explore</a>
-
-</nav>
-
+<header class="topbar">
+  <a href="#home" class="logo"><span>K</span>KSTUDIO</a>
+  <nav id="nav">
+    <a class="active" href="#home">Home</a>
+    <a href="#discover">Discover</a>
+    <a href="#albums">Albums</a>
+    <a href="#artists">Artists</a>
+    <a href="#library">Your Library</a>
+  </nav>
+  <div class="actions">
+    <button class="search-btn" id="searchOpen" aria-label="Search">⌕</button>
+    <button class="avatar" id="profile">KN</button>
+    <button class="menu" id="menu">☰</button>
+  </div>
 </header>
 
+<main id="home">
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">KSTUDIO • MUSIC PLATFORM</span>
+      <h1>Your sound.<br><em>Your moment.</em></h1>
+      <p>Temukan musik baru, album favorit, dan playlist yang cocok dengan mood kamu.</p>
+      <div class="hero-actions">
+        <button class="primary" data-play="Midnight Drive">▶ Start listening</button>
+        <button class="secondary" data-info="Midnight Drive">Explore album</button>
+      </div>
+      <div class="stats"><span>● 10M+ tracks</span><span>● 500K+ artists</span><span>● Curated daily</span></div>
+    </div>
+    <div class="hero-art">
+      <div class="orb orb1"></div><div class="orb orb2"></div>
+      <img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=1200&q=85" alt="Musician performing on stage">
+      <div class="floating-card">
+        <div class="mini-cover"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=300&q=80" alt=""></div>
+        <div><b>Midnight Drive</b><small>KSTUDIO Selects</small></div><span>•••</span>
+      </div>
+    </div>
+  </section>
 
-<section class="hero">
+  <section class="section" id="discover">
+    <div class="section-head"><div><small>FOR YOU</small><h2>Made for your mood</h2></div><button class="see" data-filter="all">See all →</button></div>
+    <div class="playlist-grid" id="playlistGrid"></div>
+  </section>
 
-<div class="left">
+  <section class="section" id="albums">
+    <div class="section-head"><div><small>NEW RELEASES</small><h2>Fresh albums</h2></div><button class="see">See all →</button></div>
+    <div class="music-grid" id="albumGrid"></div>
+  </section>
 
-<p class="tag">🎵 Music Studio</p>
+  <section class="section" id="artists">
+    <div class="section-head"><div><small>ARTIST SPOTLIGHT</small><h2>Artists you may love</h2></div></div>
+    <div class="artist-row" id="artistGrid"></div>
+  </section>
 
-<h1>
-Feel The <span>Music</span><br>
-Create Your Story.
-</h1>
+  <section class="section library" id="library">
+    <div class="library-card">
+      <div><small>YOUR LIBRARY</small><h2>Keep your favorites close.</h2><p>Save tracks, albums, and playlists so everything you love stays one tap away.</p></div>
+      <button class="primary" id="libraryBtn">＋ Add to library</button>
+    </div>
+  </section>
+</main>
 
-<p class="desc">
-KStudio menghadirkan pengalaman musik modern.
-Temukan lagu favorit, artis baru,
-playlist terbaik, dan inspirasi tanpa batas.
-</p>
+<footer>
+  <div class="foot-logo">KSTUDIO</div>
+  <p>Music for every version of you.</p>
+  <div class="foot-links"><a href="#home">Home</a><a href="#discover">Discover</a><a href="#albums">Albums</a><a href="https://wa.me/6285150902999" target="_blank" rel="noopener">Customer Service</a></div>
+  <small>© 2026 KSTUDIO. Demo music interface.</small>
+</footer>
 
-<div class="buttons">
+<div class="player" id="player">
+  <div class="now"><img id="playerImg" src="" alt=""><div><b id="playerTitle">Nothing playing</b><small id="playerArtist">Choose a track</small></div></div>
+  <div class="controls"><button id="prev">↶</button><button class="play" id="toggle">▶</button><button id="next">↷</button></div>
+  <div class="progress"><span id="time">0:00</span><div class="bar"><i id="bar"></i></div><span>3:42</span></div>
+  <button class="close-player" id="closePlayer">×</button>
+</div>
 
-<a href="#" class="btn1">
-Start Listening
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box"><input id="searchInput" placeholder="Search songs, artists, albums..." autocomplete="off"><button id="searchClose">×</button></div>
+  <div id="results"></div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose">×</button>
+    <img id="modalImage" alt="">
+    <div class="modal-copy"><small id="modalType"></small><h2 id="modalTitle"></h2><p id="modalDesc"></p><button class="primary" id="modalPlay">▶ Play</button></div>
+  </div>
+</div>
+
+<a class="wa" href="https://wa.me/6285150902999?text=Halo%20KSTUDIO%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener" aria-label="Chat Customer Service WhatsApp">
+  <span>◉</span><b>Chat with us</b>
 </a>
-
-<a href="#" class="btn2">
-Learn More
-</a>
-
-</div>
-
-<div class="stats">
-
-<div>
-<h2>5M+</h2>
-<p>Listeners</p>
-</div>
-
-<div>
-<h2>300K+</h2>
-<p>Songs</p>
-</div>
-
-<div>
-<h2>20K+</h2>
-<p>Artists</p>
-</div>
-
-</div>
-
-</div>
-
-<div class="right">
-
-<div class="music-card">
-
-<i class="fas fa-headphones"></i>
-
-<h3>Now Playing</h3>
-
-<h1>Dream Melody</h1>
-
-<div class="progress">
-<div></div>
-</div>
-
-<div class="control">
-
-<i class="fas fa-backward"></i>
-<i class="fas fa-play-circle"></i>
-<i class="fas fa-forward"></i>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
+<div class="toast" id="toast"></div>
 <script src="script.js"></script>
-
 </body>
 </html>
