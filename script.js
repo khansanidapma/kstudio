@@ -1,22 +1,22 @@
 const tracks=[
- {title:"Midnight Drive",artist:"KSTUDIO Selects",type:"Album",year:"2026",desc:"Synth-pop malam yang smooth untuk perjalanan panjang dan lampu kota.",img:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=85"},
- {title:"Blue Hours",artist:"Luna Vale",type:"Album",year:"2026",desc:"Dreamy alternative pop untuk sore yang tenang.",img:"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85"},
- {title:"After Rain",artist:"Mira Sol",type:"Single",year:"2026",desc:"Melody hangat dengan nuansa acoustic modern.",img:"https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=85"},
+ {title:"Midnight Drive",artist:"KSTUDIO Selects",type:"Album",year:"2026",desc:"Synth-pop malam yang smooth untuk perjalanan panjang dan lampu kota.",img:"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=85"},
+ {title:"Blue Hours",artist:"Luna Vale",type:"Album",year:"2026",desc:"Dreamy alternative pop untuk sore yang tenang.",img:"https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=900&q=85"},
+ {title:"After Rain",artist:"Mira Sol",type:"Single",year:"2026",desc:"Melody hangat dengan nuansa acoustic modern.",img:"https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=85"},
  {title:"Neon Hearts",artist:"The Violets",type:"Album",year:"2025",desc:"Electro-pop penuh energi dengan chorus yang catchy.",img:"https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=900&q=85"},
- {title:"Cloud Nine",artist:"Aria Bloom",type:"Album",year:"2026",desc:"A dreamy collection made for slow mornings.",img:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&q=85"}
+ {title:"Cloud Nine",artist:"Aria Bloom",type:"Album",year:"2026",desc:"A dreamy collection made for slow mornings.",img:"https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=900&q=85"}
 ];
 const playlists=[
- {name:"Late Night",desc:"For 2AM thoughts",img:"https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=85"},
+ {name:"Late Night",desc:"For 2AM thoughts",img:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=900&q=85"},
  {name:"Main Character",desc:"Feel like the star",img:"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85"},
- {name:"Soft Sunday",desc:"Slow & easy",img:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85"},
+ {name:"Soft Sunday",desc:"Slow & easy",img:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=85"},
  {name:"Energy Boost",desc:"Turn it all the way up",img:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&q=85"}
 ];
 const artists=[
- ["Luna Vale","https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80"],
- ["Mira Sol","https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80"],
- ["Aria Bloom","https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=400&q=80"],
- ["The Violets","https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80"],
- ["Nova Rey","https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=400&q=80"]
+ ["Luna Vale","https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=900&q=85"],
+ ["Mira Sol","https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&q=85"],
+ ["Aria Bloom","https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=85"],
+ ["The Violets","https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85"],
+ ["Nova Rey","https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=900&q=85"]
 ];
 
 function render(){
