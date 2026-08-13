@@ -1,108 +1,11 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="KSTUDIO — music discovery, playlists, albums and artists.">
-  <title>KSTUDIO — Music for every moment</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<header class="topbar">
-  <a href="#home" class="logo"><span>K</span>KSTUDIO</a>
-  <nav id="nav">
-    <a class="active" href="#home">Home</a>
-    <a href="#discover">Discover</a>
-    <a href="#albums">Albums</a>
-    <a href="#artists">Artists</a>
-    <a href="#library">Your Library</a>
-  </nav>
-  <div class="actions">
-    <button class="search-btn" id="searchOpen" aria-label="Search">⌕</button>
-    <button class="avatar" id="profile">KN</button>
-    <button class="menu" id="menu">☰</button>
-  </div>
-</header>
-
-<main id="home">
-  <section class="hero">
-    <div class="hero-copy">
-      <span class="eyebrow">KSTUDIO • MUSIC PLATFORM</span>
-      <h1>Your sound.<br><em>Your moment.</em></h1>
-      <p>Temukan musik baru, album favorit, dan playlist yang cocok dengan mood kamu.</p>
-      <div class="hero-actions">
-        <button class="primary" data-play="Midnight Drive">▶ Start listening</button>
-        <button class="secondary" data-info="Midnight Drive">Explore album</button>
-      </div>
-      <div class="stats"><span>● 10M+ tracks</span><span>● 500K+ artists</span><span>● Curated daily</span></div>
-    </div>
-    <div class="hero-art">
-      <div class="orb orb1"></div><div class="orb orb2"></div>
-      <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=85" alt="Musician performing on stage">
-      <div class="floating-card">
-        <div class="mini-cover"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=85" alt=""></div>
-        <div><b>Midnight Drive</b><small>KSTUDIO Selects</small></div><span>•••</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="discover">
-    <div class="section-head"><div><small>FOR YOU</small><h2>Made for your mood</h2></div><button class="see" data-filter="all">See all →</button></div>
-    <div class="playlist-grid" id="playlistGrid"></div>
-  </section>
-
-  <section class="section" id="albums">
-    <div class="section-head"><div><small>NEW RELEASES</small><h2>Fresh albums</h2></div><button class="see">See all →</button></div>
-    <div class="music-grid" id="albumGrid"></div>
-  </section>
-
-  <section class="section" id="artists">
-    <div class="section-head"><div><small>ARTIST SPOTLIGHT</small><h2>Artists you may love</h2></div></div>
-    <div class="artist-row" id="artistGrid"></div>
-  </section>
-
-  <section class="section library" id="library">
-    <div class="library-card">
-      <div><small>YOUR LIBRARY</small><h2>Keep your favorites close.</h2><p>Save tracks, albums, and playlists so everything you love stays one tap away.</p></div>
-      <button class="primary" id="libraryBtn">＋ Add to library</button>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="foot-logo">KSTUDIO</div>
-  <p>Music for every version of you.</p>
-  <div class="foot-links"><a href="#home">Home</a><a href="#discover">Discover</a><a href="#albums">Albums</a><a href="https://wa.me/6285150902999" target="_blank" rel="noopener">Customer Service</a></div>
-  <small>© 2026 KSTUDIO. Demo music interface.</small>
-</footer>
-
-<div class="player" id="player">
-  <div class="now"><img id="playerImg" src="" alt=""><div><b id="playerTitle">Nothing playing</b><small id="playerArtist">Choose a track</small></div></div>
-  <div class="controls"><button id="prev">↶</button><button class="play" id="toggle">▶</button><button id="next">↷</button></div>
-  <div class="progress"><span id="time">0:00</span><div class="bar"><i id="bar"></i></div><span>3:42</span></div>
-  <button class="close-player" id="closePlayer">×</button>
-</div>
-
-<div class="search-overlay" id="searchOverlay">
-  <div class="search-box"><input id="searchInput" placeholder="Search songs, artists, albums..." autocomplete="off"><button id="searchClose">×</button></div>
-  <div id="results"></div>
-</div>
-
-<div class="modal" id="modal">
-  <div class="modal-card">
-    <button class="modal-close" id="modalClose">×</button>
-    <img id="modalImage" alt="">
-    <div class="modal-copy"><small id="modalType"></small><h2 id="modalTitle"></h2><p id="modalDesc"></p><button class="primary" id="modalPlay">▶ Play</button></div>
-  </div>
-</div>
-
-<a class="wa" href="https://wa.me/6285150902999?text=Halo%20KSTUDIO%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener" aria-label="Chat Customer Service WhatsApp">
-  <span>◉</span><b>Chat with us</b>
-</a>
-<div class="toast" id="toast"></div>
-<script src="script.js"></script>
-</body>
-</html>
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KSTUDIO ♡ Music</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
+<header><a class="logo" href="#home">♡ KSTUDIO</a><nav><a href="#home">Home</a><a href="#moods">Discover</a><a href="#albums">Albums</a><a href="#artists">Artists</a></nav><div class="actions"><button id="searchBtn">⌕</button><button>♡</button></div></header>
+<main><section class="hero" id="home"><div><small>♡ KSTUDIO MUSIC CLUB</small><h1>Music for your<br><em>little happy moments.</em></h1><p>Your cozy corner for songs, playlists and artists that make an ordinary day feel a little more special.</p><div class="buttons"><button class="primary" onclick="play('Pink Moon')">♡ Play something cute</button><button class="secondary" onclick="openModal('Pink Moon')">Explore ♫</button></div><div class="tags"><span>♡ Made for you</span><span>✦ Daily picks</span><span>☁ Cozy sounds</span></div></div><div class="stage"><div class="sparkle">✦ ♡ ✧<br>♪ ✦</div><div class="record"><b>K</b></div><div class="album back"><img src="assets/sugar-rush.svg"></div><div class="album front"><img src="assets/pink-moon.svg"><b>Pink Moon ♡</b><small>KSTUDIO Selects</small></div><div class="sticker">♡</div></div></section>
+<section class="section" id="moods"><small>JUST FOR YOU ♡</small><h2>Pick your mood</h2><div class="moods"><article>☁<b>Soft & cozy</b><small>slow day sounds</small></article><article>♡<b>Main character</b><small>your movie moment</small></article><article>✦<b>Sweet energy</b><small>instant mood boost</small></article><article>☾<b>Late night</b><small>2AM thoughts</small></article></div></section>
+<section class="section" id="albums"><small>NEW & LOVELY</small><h2>Fresh from the studio</h2><div class="grid" id="albumsGrid"></div></section>
+<section class="section" id="artists"><small>MEET THE ARTISTS</small><h2>Your new favorites</h2><div class="artists" id="artistsGrid"></div></section>
+<section class="quote">♡<p>“A tiny song can turn a whole day around.”</p><small>— KSTUDIO notes</small></section></main>
+<footer><b>KSTUDIO ♡</b><p>Made with music & a little pink.</p><a href="https://wa.me/6285150902999?text=Halo%20KSTUDIO%2C%20saya%20ingin%20bertanya." target="_blank">Customer Service WhatsApp</a><small>© 2026 KSTUDIO</small></footer>
+<div class="player" id="player"><img id="pimg"><div><b id="ptitle">Nothing playing ♡</b><small id="partist">Pick a song</small></div><button id="playBtn">▶</button><button onclick="document.getElementById('player').style.display='none'">×</button></div>
+<div class="modal" id="modal"><div class="modalCard"><button onclick="closeModal()">×</button><img id="mimg"><div><small id="mtype"></small><h2 id="mtitle"></h2><p id="mdesc"></p><button class="primary" id="mplay">♡ Play</button></div></div></div>
+<a class="wa" href="https://wa.me/6285150902999?text=Halo%20KSTUDIO%2C%20saya%20ingin%20bertanya." target="_blank">◉ <b>Chat with us</b></a><div class="toast" id="toast"></div><script src="script.js"></script></body></html>
