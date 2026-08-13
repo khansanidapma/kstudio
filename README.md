@@ -1,12 +1,22 @@
-# KSTUDIO Cute Pink — Local Images
+# KSTUDIO
 
-Semua gambar album dan artist ada di folder `assets/`, jadi tidak bergantung pada Unsplash/external image hosting.
+Modern, minimal music streaming landing page / front-end demo.
 
-Upload struktur ini ke repository GitHub Pages:
-index.html
-style.css
-script.js
-assets/ (semua SVG)
+## Included
+- Responsive desktop/tablet/mobile layout
+- KSTUDIO pink + aventurine/spearmint palette
+- Search/filter
+- Mood discovery
+- Play/pause, next/previous, progress, volume
+- Shuffle
+- Dark appearance toggle
+- Floating WhatsApp customer service button
+- No framework/build step required
 
-WhatsApp Customer Service: 085150902999
-Brand: Soft Blush, Pastel Pink, Baby Pink, Bubblegum Tint, Bubblegum Pink.
+## GitHub Pages
+Upload the contents of this folder to a repository and enable GitHub Pages from the repository's Pages settings. GitHub Pages can publish static HTML/CSS/JS directly.
+
+## Demo audio
+The demo playlist uses royalty-free audio URLs from Pixabay. Review the individual track license before using any third-party audio in a commercial production deployment.
+
+Customer service WhatsApp: 085150902999
