@@ -17,6 +17,6 @@ Modern, minimal music streaming landing page / front-end demo.
 Upload the contents of this folder to a repository and enable GitHub Pages from the repository's Pages settings. GitHub Pages can publish static HTML/CSS/JS directly.
 
 ## Demo audio
-The demo playlist uses royalty-free audio URLs from Pixabay. Review the individual track license before using any third-party audio in a commercial production deployment.
+The demo playlist uses locally generated Web Audio API tones, so it has no external audio dependency and no copyrighted song is bundled.
 
 Customer service WhatsApp: 085150902999
