@@ -17,6 +17,6 @@ Modern, minimal music streaming landing page / front-end demo.
 Upload the contents of this folder to a repository and enable GitHub Pages from the repository's Pages settings. GitHub Pages can publish static HTML/CSS/JS directly.
 
 ## Demo audio
-The demo playlist uses locally generated Web Audio API tones, so it has no external audio dependency and no copyrighted song is bundled.
+The demo playlist contains original instrumental WAV demo tracks generated specifically for this KSTUDIO template. Audio is bundled locally in `assets/audio`, so playback does not depend on third-party MP3 URLs.
 
 Customer service WhatsApp: 085150902999
