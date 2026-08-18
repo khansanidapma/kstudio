@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F7D6D0">
+  <meta name="description" content="KSTUDIO — modern music streaming experience.">
+  <title>KSTUDIO — Music for your mood</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#home" aria-label="KSTUDIO home">
+        <span class="brand-mark">K</span><span>KSTUDIO</span>
+      </a>
+      <nav>
+        <p class="nav-label">MENU</p>
+        <a class="nav-link active" href="#home"><span>⌂</span> Home</a>
+        <a class="nav-link" href="#discover"><span>✦</span> Discover</a>
+        <a class="nav-link" href="#library"><span>♡</span> Your Library</a>
+      </nav>
+      <div class="sidebar-playlist">
+        <p class="nav-label">YOUR PLAYLIST</p>
+        <button class="playlist-link">♡ Daily Mood</button>
+        <button class="playlist-link">◉ Night Drive</button>
+        <button class="playlist-link">✧ Soft Focus</button>
+        <button class="playlist-link">＋ New playlist</button>
+      </div>
+      <div class="sidebar-bottom">
+        <button class="mini-theme" id="themeToggle">☼ <span>Appearance</span></button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+        <div class="search">
+          <span>⌕</span>
+          <input id="searchInput" type="search" placeholder="What do you want to listen to?" aria-label="Search music">
+          <kbd>⌘ K</kbd>
+        </div>
+        <div class="top-actions">
+          <button class="icon-btn" id="notifications" aria-label="Notifications">♢</button>
+          <button class="avatar" aria-label="Profile">KS</button>
+        </div>
+      </header>
+
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <span class="eyebrow">KSTUDIO ORIGINAL</span>
+          <h1>Music that feels<br><em>like you.</em></h1>
+          <p>Discover fresh sounds, save your favorites, and let your mood choose the soundtrack.</p>
+          <div class="hero-actions">
+            <button class="btn primary" data-play="0">▶ Play now</button>
+            <a class="btn ghost" href="#discover">Explore music</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Abstract music artwork">
+          <div class="orb orb-a"></div><div class="orb orb-b"></div><div class="orb orb-c"></div>
+          <div class="vinyl"><span></span></div>
+          <div class="hero-card">
+            <span class="live-dot"></span>
+            <div><b>Now feeling</b><small>soft • dreamy • warm</small></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="discover">
+        <div class="section-head">
+          <div><span class="eyebrow">CURATED FOR YOU</span><h2>Made for your mood</h2></div>
+          <button class="text-btn" id="shuffleBtn">Shuffle all ↗</button>
+        </div>
+        <div class="mood-grid">
+          <button class="mood-card mood-one" data-mood="Dreamy">Dreamy <span>☁</span></button>
+          <button class="mood-card mood-two" data-mood="Chill">Chill <span>◌</span></button>
+          <button class="mood-card mood-three" data-mood="Focus">Focus <span>◒</span></button>
+          <button class="mood-card mood-four" data-mood="Energy">Energy <span>↗</span></button>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><div><span class="eyebrow">TRENDING NOW</span><h2>Popular this week</h2></div><button class="text-btn" id="viewAll">View all →</button></div>
+        <div class="track-list" id="trackList"></div>
+      </section>
+
+      <section class="section promo">
+        <div><span class="eyebrow">KSTUDIO PLAYLIST</span><h2>Slow mornings,<br>soft melodies.</h2><p>A handpicked collection for coffee, calm and everything in between.</p><button class="btn dark" data-play="2">▶ Start listening</button></div>
+        <div class="playlist-art"><div class="sun"></div><div class="mountain m1"></div><div class="mountain m2"></div></div>
+      </section>
+
+      <section class="section artists" id="library">
+        <div class="section-head"><div><span class="eyebrow">FRESH FINDS</span><h2>Artists to know</h2></div></div>
+        <div class="artist-grid">
+          <article><div class="artist-img a1"></div><b>Luna Vale</b><span>Dream pop</span></article>
+          <article><div class="artist-img a2"></div><b>Raka Sora</b><span>Indie soul</span></article>
+          <article><div class="artist-img a3"></div><b>Mira June</b><span>Soft electronic</span></article>
+          <article><div class="artist-img a4"></div><b>North & Co.</b><span>Acoustic</span></article>
+        </div>
+      </section>
+
+      <footer><b>KSTUDIO</b><span>Made for music lovers.</span><span>© 2026 KSTUDIO</span></footer>
+    </main>
+  </div>
+
+  <div class="player" id="player">
+    <div class="player-track">
+      <div class="cover" id="playerCover"></div>
+      <div><b id="playerTitle">Bloom Again</b><span id="playerArtist">Luna Vale</span></div>
+    </div>
+    <div class="player-center">
+      <div class="controls"><button id="prev">↶</button><button class="play-main" id="playPause">▶</button><button id="next">↷</button></div>
+      <div class="progress"><span id="currentTime">0:00</span><input type="range" id="progress" min="0" max="100" value="0"><span id="duration">0:00</span></div>
+    </div>
+    <div class="player-extra"><span>♡</span><span>⌕</span><input type="range" id="volume" min="0" max="1" step=".01" value=".75"> 🔊</div>
+  </div>
+
+  <button class="wa-float" id="waButton" aria-label="Customer service WhatsApp"><span>◉</span><b>Chat CS</b></button>
+  <div class="toast" id="toast"></div>
+
+  <audio id="audio" preload="metadata"></audio>
+  <script src="script.js"></script>
+<script src="kstudio-karaoke-autoscroll.js"></script>
+</body>
+</html>
