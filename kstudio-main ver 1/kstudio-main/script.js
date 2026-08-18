@@ -41,89 +41,241 @@ document.getElementById("notifications").onclick=()=>toast("You're all caught up
 document.getElementById("viewAll").onclick=()=>{document.getElementById("searchInput").value="";renderTracks();toast("Menampilkan semua rilisan")};
 document.addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();document.getElementById("searchInput").focus()}});
 
+
 /* =========================================================
-   KSTUDIO AUTO-SCROLL
-   Starts after 2 seconds without user activity, scrolls slowly
-   to the bottom, jumps quickly to the top, then repeats.
-   Any real user interaction pauses it and restarts the 2s timer.
+   KSTUDIO AUTO-SCROLL + KARAOKE READER
    ========================================================= */
 (() => {
   const IDLE_DELAY = 2000;
-  const SCROLL_SPEED = 0.65; // pixels per animation frame
-  const TOP_PAUSE = 180;
-  const BOTTOM_THRESHOLD = 4;
+  const SCROLL_PX_PER_SECOND = 78; // ~2x the previous speed
+  const TOP_RESET_MS = 260;
+  const BOTTOM_GAP = 6;
+  const SPEECH_RATE = 1.0;
 
   let idleTimer = null;
-  let animationFrame = null;
+  let raf = null;
   let autoScrolling = false;
-  let topRestartTimer = null;
+  let resetting = false;
+  let lastFrame = 0;
+  let currentElement = null;
+  let spokenElement = null;
 
-  const pageHeight = () => Math.max(
-    document.body.scrollHeight,
-    document.documentElement.scrollHeight
-  );
+  const style = document.createElement("style");
+  style.textContent = `
+    .kstudio-karaoke-active {
+      background: linear-gradient(
+        transparent 12%,
+        rgba(247,214,208,.85) 12%,
+        rgba(247,214,208,.85) 88%,
+        transparent 88%
+      ) !important;
+      border-radius: .25em;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+    .kstudio-auto-status {
+      position: fixed;
+      right: 18px;
+      bottom: 105px;
+      z-index: 99999;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.94);
+      color: #704354;
+      box-shadow: 0 8px 28px rgba(60,30,45,.15);
+      font: 700 12px/1.2 system-ui,sans-serif;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: .2s ease;
+      pointer-events: none;
+    }
+    .kstudio-auto-status.show { opacity: 1; transform: translateY(0); }
+  `;
+  document.head.appendChild(style);
 
-  const atBottom = () =>
-    window.scrollY + window.innerHeight >= pageHeight() - BOTTOM_THRESHOLD;
+  const status = document.createElement("div");
+  status.className = "kstudio-auto-status";
+  status.textContent = "🎤 Karaoke reading";
+  document.body.appendChild(status);
 
-  const stopAutoScroll = () => {
+  function pageHeight() {
+    return Math.max(
+      document.documentElement.scrollHeight,
+      document.body ? document.body.scrollHeight : 0
+    );
+  }
+
+  function clearHighlight() {
+    if (currentElement) currentElement.classList.remove("kstudio-karaoke-active");
+    currentElement = null;
+  }
+
+  function stopVoice() {
+    if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+    clearHighlight();
+    spokenElement = null;
+  }
+
+  function stopAutoScroll() {
     autoScrolling = false;
-    if (animationFrame !== null) {
-      cancelAnimationFrame(animationFrame);
-      animationFrame = null;
-    }
-    if (topRestartTimer !== null) {
-      clearTimeout(topRestartTimer);
-      topRestartTimer = null;
-    }
-  };
+    resetting = false;
+    if (raf) cancelAnimationFrame(raf);
+    raf = null;
+    lastFrame = 0;
+    status.classList.remove("show");
+    stopVoice();
+  }
 
-  const autoScrollStep = () => {
-    if (!autoScrolling) return;
+  function isReadable(el) {
+    if (!el || !el.textContent || el.textContent.trim().length < 3) return false;
+    if (el.closest("script,style,noscript,nav,button,input,textarea,select,[aria-hidden='true']")) return false;
+    const r = el.getBoundingClientRect();
+    return r.width > 10 && r.height > 0;
+  }
 
-    if (atBottom()) {
-      // Quickly return to the top, then continue slowly downward.
-      window.scrollTo({ top: 0, behavior: "instant" });
-      topRestartTimer = setTimeout(() => {
-        topRestartTimer = null;
-        if (autoScrolling) animationFrame = requestAnimationFrame(autoScrollStep);
-      }, TOP_PAUSE);
+  function getCandidate() {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, {
+      acceptNode(el) {
+        if (!isReadable(el)) return NodeFilter.FILTER_REJECT;
+        const tag = el.tagName;
+        if (["P","H1","H2","H3","H4","LI","B","SPAN"].includes(tag)) {
+          return NodeFilter.FILTER_ACCEPT;
+        }
+        return NodeFilter.FILTER_SKIP;
+      }
+    });
+
+    let best = null, bestScore = Infinity;
+    const target = window.innerHeight * 0.38;
+    let el;
+    while ((el = walker.nextNode())) {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < 30 || r.top > window.innerHeight - 30) continue;
+      const score = Math.abs((r.top + r.height / 2) - target);
+      if (score < bestScore) {
+        bestScore = score;
+        best = el;
+      }
+    }
+    return best;
+  }
+
+  function speak(el) {
+    if (!el || el === spokenElement || !("speechSynthesis" in window)) return;
+
+    clearHighlight();
+    window.speechSynthesis.cancel();
+
+    spokenElement = el;
+    currentElement = el;
+    el.classList.add("kstudio-karaoke-active");
+
+    const text = el.innerText.trim().replace(/\s+/g, " ");
+    if (!text) return;
+
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = document.documentElement.lang || "id-ID";
+    u.rate = SPEECH_RATE;
+    u.pitch = 1;
+    u.volume = 1;
+
+    u.onend = () => {
+      if (currentElement === el) clearHighlight();
+    };
+    u.onerror = () => {
+      if (currentElement === el) clearHighlight();
+    };
+
+    window.speechSynthesis.speak(u);
+  }
+
+  function karaoke() {
+    if (!autoScrolling || resetting) return;
+    const candidate = getCandidate();
+    if (candidate && candidate !== spokenElement) speak(candidate);
+  }
+
+  function resetToTop() {
+    resetting = true;
+    const start = window.scrollY;
+    const started = performance.now();
+
+    function step(now) {
+      const t = Math.min(1, (now - started) / TOP_RESET_MS);
+      const eased = 1 - Math.pow(1 - t, 3);
+      window.scrollTo(0, Math.round(start * (1 - eased)));
+
+      if (t < 1) {
+        requestAnimationFrame(step);
+      } else {
+        window.scrollTo(0, 0);
+        stopVoice();
+        spokenElement = null;
+        resetting = false;
+        if (autoScrolling) {
+          lastFrame = performance.now();
+          raf = requestAnimationFrame(scrollStep);
+        }
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  function scrollStep(now) {
+    if (!autoScrolling || resetting) return;
+
+    if (!lastFrame) lastFrame = now;
+    const dt = Math.min(50, now - lastFrame);
+    lastFrame = now;
+
+    const maxScroll = pageHeight() - window.innerHeight;
+
+    if (maxScroll <= BOTTOM_GAP) {
+      raf = requestAnimationFrame(scrollStep);
       return;
     }
 
-    window.scrollBy(0, SCROLL_SPEED);
-    animationFrame = requestAnimationFrame(autoScrollStep);
-  };
+    if (window.scrollY >= maxScroll - BOTTOM_GAP) {
+      resetToTop();
+      return;
+    }
 
-  const startAutoScroll = () => {
-    if (autoScrolling || pageHeight() <= window.innerHeight + BOTTOM_THRESHOLD) return;
+    window.scrollBy(0, SCROLL_PX_PER_SECOND * dt / 1000);
+    karaoke();
+    raf = requestAnimationFrame(scrollStep);
+  }
+
+  function startAutoScroll() {
+    if (autoScrolling || pageHeight() <= window.innerHeight + BOTTOM_GAP) return;
     autoScrolling = true;
-    animationFrame = requestAnimationFrame(autoScrollStep);
-  };
+    status.classList.add("show");
+    lastFrame = performance.now();
+    raf = requestAnimationFrame(scrollStep);
+  }
 
-  const resetIdleTimer = () => {
-    // Ignore scroll events generated by the auto-scroll itself.
-    if (autoScrolling) return;
-
-    stopAutoScroll();
+  function userActivity() {
+    if (autoScrolling) stopAutoScroll();
     clearTimeout(idleTimer);
     idleTimer = setTimeout(startAutoScroll, IDLE_DELAY);
-  };
+  }
 
-  // Real user activity pauses auto-scroll and starts the 2-second countdown again.
-  ["mousemove", "mousedown", "wheel", "touchstart", "touchmove", "keydown", "pointerdown"].forEach(eventName => {
-    window.addEventListener(eventName, resetIdleTimer, { passive: true });
+  ["mousemove","mousedown","wheel","touchstart","touchmove","pointerdown","keydown","click"].forEach(type => {
+    window.addEventListener(type, userActivity, {passive: true});
   });
 
-  // A normal user scroll is also treated as activity, while auto-scroll is ignored.
   window.addEventListener("scroll", () => {
-    if (!autoScrolling) resetIdleTimer();
-  }, { passive: true });
+    if (!autoScrolling && !resetting) {
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(startAutoScroll, IDLE_DELAY);
+    }
+  }, {passive: true});
 
   window.addEventListener("resize", () => {
-    if (!autoScrolling) resetIdleTimer();
-  }, { passive: true });
+    if (!autoScrolling) userActivity();
+  }, {passive: true});
 
-  // Start the first 2-second countdown after the page is ready.
-  resetIdleTimer();
+  // Initial 2-second inactivity countdown.
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(startAutoScroll, IDLE_DELAY);
 })();
+
