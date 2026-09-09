@@ -1,22 +1,18 @@
-# KSTUDIO
+# KSTUDIO — Fresh Elegant Reset
 
-Modern, minimal music streaming landing page / front-end demo.
+Clean replacement for the old mixed project files.
 
 ## Included
-- Responsive desktop/tablet/mobile layout
-- KSTUDIO pink + aventurine/spearmint palette
-- Search/filter
-- Mood discovery
-- Play/pause, next/previous, progress, volume
-- Shuffle
+- Responsive HTML/CSS/JS
+- Elegant editorial design using Pearl Beige, Golden Apricot, Cotton Candy, Brown Red, Black Cherry
+- Heart cursor + custom favicon
+- Four supplied YouTube sources
+- Functional browser-saved playlist (add/remove/clear via localStorage)
+- Original 60-second instrumental sample bundled locally
 - Dark appearance toggle
-- Floating WhatsApp customer service button
-- No framework/build step required
 
 ## GitHub Pages
-Upload the contents of this folder to a repository and enable GitHub Pages from the repository's Pages settings. GitHub Pages can publish static HTML/CSS/JS directly.
+Upload the contents of this folder to a repository and enable GitHub Pages. No build step is required.
 
-## Demo audio
-The demo playlist contains original instrumental WAV demo tracks generated specifically for this KSTUDIO template. Audio is bundled locally in `assets/audio`, so playback does not depend on third-party MP3 URLs.
-
-Customer service WhatsApp: 085150902999
+## YouTube
+The supplied URLs are preserved as source links. The site does not download or redistribute those videos; clicking a source opens YouTube / its official embed.
