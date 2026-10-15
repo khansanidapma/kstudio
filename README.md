@@ -1,18 +1,19 @@
-# KSTUDIO — Fresh Elegant Reset
+# KSTUDIO — Blue Sky Refresh
 
-Clean replacement for the old mixed project files.
+Responsive GitHub Pages website refresh using the supplied palette:
+- Gold: `#BC9C55`
+- Ice blue: `#E6F1FA`
+- Sky blue: `#5798D7`
 
 ## Included
-- Responsive HTML/CSS/JS
-- Elegant editorial design using Pearl Beige, Golden Apricot, Cotton Candy, Brown Red, Black Cherry
-- Heart cursor + custom favicon
-- Four supplied YouTube sources
-- Functional browser-saved playlist (add/remove/clear via localStorage)
-- Original 60-second instrumental sample bundled locally
-- Dark appearance toggle
+- Responsive landing page, Discover, local playlist, About, Contact and newsletter sections
+- Admin Instagram contact link: https://www.instagram.com/nnidaa.n/
+- Existing browser-saved playlist and local royalty-free audio sample retained
+- Dark appearance toggle and heart cursor retained
+- Newsletter form currently provides front-end confirmation only; it does not save emails to a database until connected to Google Apps Script.
 
-## GitHub Pages
-Upload the contents of this folder to a repository and enable GitHub Pages. No build step is required.
+## Deploy
+Upload the ZIP contents to your GitHub repository (replace the existing website files), then check GitHub Pages deployment.
 
-## YouTube
-The supplied URLs are preserved as source links. The site does not download or redistribute those videos; clicking a source opens YouTube / its official embed.
+## Note
+The supplied YouTube URLs remain source links. The site does not download or redistribute videos.
