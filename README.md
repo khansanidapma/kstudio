@@ -17,3 +17,9 @@ Upload the ZIP contents to your GitHub repository (replace the existing website 
 
 ## Note
 The supplied YouTube URLs remain source links. The site does not download or redistribute videos.
+
+
+## Social sharing preview (Open Graph)
+- Added `og:title`, `og:description`, `og:url`, and `og:image` metadata plus a Twitter large-image card.
+- Preview image: `assets/og-kstudio.png` (1200 × 630).
+- After deployment, use the Facebook Sharing Debugger or LinkedIn Post Inspector to refresh cached previews. Some apps cache thumbnails, and the image will only appear after GitHub Pages has deployed the new files.
