@@ -1,0 +1,11 @@
+# robots.txt for KStudio
+# https://khansanidapma.github.io/kstudio/
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://khansanidapma.github.io/kstudio/sitemap.xml
+
+# Crawl-delay is optional; most modern bots ignore it
+# Crawl-delay: 1

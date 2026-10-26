@@ -1,0 +1,20 @@
+{
+  "name": "KStudio — Curated Music",
+  "short_name": "KStudio",
+  "description": "A refined music space for discovering tracks, saving favorites, and building a playlist around your mood.",
+  "start_url": "/kstudio/",
+  "scope": "/kstudio/",
+  "display": "standalone",
+  "background_color": "#E6F1FA",
+  "theme_color": "#5798D7",
+  "orientation": "any",
+  "lang": "id",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
