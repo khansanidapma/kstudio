@@ -48,3 +48,21 @@ input:focus-visible {
 
 @media(max-width:800px){.contact-grid{grid-template-columns:1fr}.hero:before{width:70%;height:40%;top:8%}}
 @media(max-width:480px){.contact{padding-left:20px;padding-right:20px}.email-row{flex-direction:column}.email-row .btn{width:100%}.contact-card,.newsletter-card{border-radius:22px}}
+
+/* Stronger contrast for accessibility (small text & links flagged by Lighthouse) */
+.hero small, .section small, .about small {
+  color: #20384D !important;
+  font-size: 11px !important;
+}
+.heading > span, .heading button {
+  color: #20384D !important;
+  font-size: 11px !important;
+}
+.track p, .track p a {
+  color: #20384D !important;
+  font-size: 12px !important;
+}
+.track p a {
+  text-decoration: underline;
+  font-weight: 600;
+}
